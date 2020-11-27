@@ -1,7 +1,6 @@
 import React from 'react';
 import CityBtn from './CityBtn';
 import './DropdownCities.css'
-
 import { CITY_NAMES } from '../../constants/constants';
 
 function DropdownCities ({ isOpened }) {

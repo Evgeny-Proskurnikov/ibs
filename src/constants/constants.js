@@ -1,6 +1,8 @@
 import { v4 as uuid } from 'uuid';
 
-const DO_SMTHN = 'DO_SMTHN';
+const ADD_ITEM = 'ADD_ITEM';
+const REMOVE_ALL_ITEMS = 'REMOVE_ALL_ITEMS';
+const ADD_CITY_NAME = 'ADD_CITY_NAME';
 
 const CITY_NAMES = [
   {
@@ -8,7 +10,7 @@ const CITY_NAMES = [
     id: uuid()
   },
   {
-    city: 'saint-petersburg',
+    city: 'saint petersburg',
     id: uuid()
   },
   {
@@ -25,4 +27,4 @@ const CITY_NAMES = [
   },
 ]
 
-export { DO_SMTHN, CITY_NAMES };
+export { ADD_ITEM, REMOVE_ALL_ITEMS, CITY_NAMES, ADD_CITY_NAME };

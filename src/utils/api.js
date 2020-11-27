@@ -5,11 +5,8 @@ export class Api {
   }
 
   getCurrentWheather(cityName) {
-    return fetch(`${this._url}q=${cityName}&appid=${this._token}`, {
-      method: 'GET',
-      headers: {
-        'Content-type': 'application/json'
-      }
+    return fetch(`${this._url}q=${cityName}&units=metric&appid=${this._token}`, {
+      method: 'GET'
     })
       .then(res => {
         if (res.ok) {

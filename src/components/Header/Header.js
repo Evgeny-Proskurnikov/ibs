@@ -2,11 +2,11 @@ import React from 'react';
 import './Header.css';
 
 function Header({ headerState, handleHeaderClick }) {
-  const headerClass = headerState ? 'page__header shake' : 'page__header';
+  const headerClass = headerState ? 'header shake' : 'header';
 
   return (
     <h1 className={headerClass} onClick={handleHeaderClick}>
-      Wheather in...
+      Weather in...
     </h1>
   );
 }
