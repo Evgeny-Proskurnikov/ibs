@@ -1,0 +1,12 @@
+.droplist {
+  background-color: transparent;
+  margin: 0;
+  height: 10vh;
+  width: 50vw;
+  padding: 0;
+  overflow: visible;
+  list-style: none;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}

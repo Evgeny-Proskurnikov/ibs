@@ -1,0 +1,16 @@
+.droplist__tab {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 30px;
+  border: solid 2px;
+  transition: transform .8s ease, opacity .8s ease;
+  height: 25px;
+  padding: 0 20px;
+  text-transform: capitalize;
+}
+
+.droplist__tab:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
