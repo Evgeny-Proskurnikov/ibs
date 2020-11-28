@@ -1,8 +1,9 @@
-import { ADD_ITEM, REMOVE_ALL_ITEMS, ADD_CITY_NAME } from '../constants/constants';
+import { ADD_ITEM, REMOVE_ALL_ITEMS, ADD_CITY_NAME, ADD_DAILY_FORECAST } from '../constants/constants';
 
 const initialState = {
   data: {},
-  city: ''
+  city: '',
+  dailyForecast: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -12,6 +13,9 @@ const reducer = (state = initialState, action) => {
     }
     case ADD_CITY_NAME: {
       return  { ...state, city: action.payload }
+    }
+    case ADD_DAILY_FORECAST: {
+      return  { ...state, dailyForecast: action.payload }
     }
     case REMOVE_ALL_ITEMS: {
       return  { ...state, data: {} }

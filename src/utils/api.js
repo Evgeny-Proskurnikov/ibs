@@ -5,7 +5,7 @@ export class Api {
   }
 
   getCurrentWheather(cityName) {
-    return fetch(`${this._url}q=${cityName}&units=metric&appid=${this._token}`, {
+    return fetch(`${this._url}weather?q=${cityName}&units=metric&appid=${this._token}`, {
       method: 'GET'
     })
       .then(res => {
@@ -16,10 +16,23 @@ export class Api {
         return Promise.reject(`Ошибка: ${res.status}`);
       })
   }
+
+  getFurtherWheather(cityName) {
+    return fetch(`${this._url}forecast?q=${cityName}&units=metric&appid=${this._token}`, {
+      method: 'GET'
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+  
+        return Promise.reject(`Ошибка: ${res.status}`);
+      })
+  }
 }
 
 const apiRequest = new Api({
-  url: 'https://api.openweathermap.org/data/2.5/weather?',
+  url: 'https://api.openweathermap.org/data/2.5/',
   token: '9235e0678cc68e3c9d6076471cbba7f9'
 })
 

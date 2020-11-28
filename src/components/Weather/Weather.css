@@ -1,4 +1,8 @@
-.weather__container {
+.weather {
   margin: 0 0 50px;
   text-align: center;
+}
+
+.weather__container {
+  display: flex;
 }

@@ -3,6 +3,7 @@ import { v4 as uuid } from 'uuid';
 const ADD_ITEM = 'ADD_ITEM';
 const REMOVE_ALL_ITEMS = 'REMOVE_ALL_ITEMS';
 const ADD_CITY_NAME = 'ADD_CITY_NAME';
+const ADD_DAILY_FORECAST = 'ADD_DAILY_FORECAST';
 
 const CITY_NAMES = [
   {
@@ -27,4 +28,4 @@ const CITY_NAMES = [
   },
 ]
 
-export { ADD_ITEM, REMOVE_ALL_ITEMS, CITY_NAMES, ADD_CITY_NAME };
+export { ADD_ITEM, REMOVE_ALL_ITEMS, CITY_NAMES, ADD_CITY_NAME, ADD_DAILY_FORECAST };

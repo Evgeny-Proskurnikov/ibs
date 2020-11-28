@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import './page.css';
+import { connect } from 'react-redux';
+import { v4 as uuid } from 'uuid';
 import Weather from './components/Weather/Weather';
 import DropdownCities from './components/Dropdown-menu/DropdownCities';
 import Header from './components/Header/Header';
 import Form from './components/Form/Form'
 import apiRequest from './utils/api';
-import { connect } from 'react-redux';
-import { addItem, removeItems } from './actions/index';
-import { v4 as uuid } from 'uuid';
+import { addItem, removeItems, addDailyForecast } from './actions/index';
+import './page.css';
 
-function App({ addItemToStore, removeStoreItems }) {
+
+function App({ addItemToStore, removeStoreItems, addDailyForecastToStore }) {
   const [ headerState, setHeaderState ] = useState(true);
   const [ citiesMenuState, setCitiesMenuState ] = useState(false);
 
@@ -18,20 +19,24 @@ function App({ addItemToStore, removeStoreItems }) {
     setCitiesMenuState(!citiesMenuState);
   }
 
-  function setWeather(initialCity) {
-    apiRequest.getCurrentWheather(initialCity)
-      .then(res => {
-        const currentTemp = Math.floor(res.main.temp);
-        const currentDate = new Date(res.dt*1000);
+  function setWeather(cityName) {
+    removeStoreItems();
 
-        removeStoreItems();
+    Promise.all([apiRequest.getCurrentWheather(cityName), apiRequest.getFurtherWheather(cityName)]) 
+      .then(([resCurrent, resFurther]) => {
+        const currentTemp = Math.floor(resCurrent.main.temp);
+        const currentDate = new Date(resCurrent.dt*1000);
+
         addItemToStore({
           id: uuid(),
-          city: res.name,
+          city: resCurrent.name,
           temp: currentTemp,
-          description: res.weather[0].description,
+          description: resCurrent.weather[0].description,
           date: currentDate.toDateString()
         });
+
+        const dailyForecast = resFurther.list.filter(item => item.dt_txt.includes('12:00:00'));
+        addDailyForecastToStore(dailyForecast);
       })
       .catch(err => console.log(err));
   }
@@ -52,7 +57,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   addItemToStore: item => dispatch(addItem(item)),
-  removeStoreItems: () => dispatch(removeItems())
+  removeStoreItems: () => dispatch(removeItems()),
+  addDailyForecastToStore: item => dispatch(addDailyForecast(item)),
 });
 
 export default (connect(mapStateToProps, mapDispatchToProps))(App);
