@@ -3,6 +3,7 @@ import './page.css';
 import Weather from './components/Weather/Weather';
 import DropdownCities from './components/Dropdown-menu/DropdownCities';
 import Header from './components/Header/Header';
+import Form from './components/Form/Form'
 import apiRequest from './utils/api';
 import { connect } from 'react-redux';
 import { addItem, removeItems } from './actions/index';
@@ -40,6 +41,7 @@ function App({ addItemToStore, removeStoreItems }) {
       <Header headerState={headerState} handleHeaderClick={handleHeaderClick} />
       <DropdownCities isOpened={citiesMenuState} />
       <Weather onUpdate={setWeather} />
+      <Form />
     </div>
   );
 }
